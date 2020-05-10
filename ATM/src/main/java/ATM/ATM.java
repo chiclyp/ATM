@@ -1,12 +1,18 @@
 package ATM;
 
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 /**
  * @author Pauline Chicoye
  */
 public class ATM {
     public static void main(String[] args) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd  HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(dtf.format(now));
+        
         Account details = new Account(0);
         details.setBalance(2500.00);
         System.out.println("Hello. This is the virtual ATM machine");
@@ -61,6 +67,7 @@ public class ATM {
                     System.out.println(details.currDep());
                 } 
                 break;
+                
             case 2:
                 System.out.println("What will be the amount withdrawled today?");
                 double withdrawal = scan.nextDouble();
@@ -81,8 +88,10 @@ public class ATM {
                 if (answer.equalsIgnoreCase(yes)){
                     details.setWithSum(withdrawal);
                     System.out.println(details.currWith());
+                   
                 } 
                 break;
+                
             case 3:
                 System.out.println(details.balance()+"$");
                 break;   
