@@ -35,7 +35,7 @@ public class ATM {
         System.out.println("(3) See Balance");
         
         int choice = scan.nextInt();
-        String answer = "";
+        String answer;
         String yes = "yes";
         
         switch (choice){
@@ -55,19 +55,33 @@ public class ATM {
                         " deposited in your account?");
                     answer = scan.next();
                 }
+                
                 if (answer.equalsIgnoreCase(yes)){
                     details.setDepSum(deposit);
                     System.out.println(details.currDep());
-                }
-                
-
+                } 
                 break;
             case 2:
                 System.out.println("What will be the amount withdrawled today?");
                 double withdrawal = scan.nextDouble();
+                
                 System.out.println("Are you sure you want " + withdrawal + 
-                        "withdrawled in your account?");
+                        " withdrawled in your account?");
                 answer = scan.next();
+                
+                while (!answer.equalsIgnoreCase(yes)){
+                    System.out.println("Please enter new amount");
+                    withdrawal = scan.nextDouble();
+                    
+                    System.out.println("Are you sure you want " + withdrawal + 
+                        " withdrawled from your account?");
+                    answer = scan.next();
+                }
+                
+                if (answer.equalsIgnoreCase(yes)){
+                    details.setWithSum(withdrawal);
+                    System.out.println(details.currWith());
+                } 
                 break;
             case 3:
                 System.out.println(details.balance()+"$");
