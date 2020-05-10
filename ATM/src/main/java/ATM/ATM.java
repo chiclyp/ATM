@@ -35,13 +35,31 @@ public class ATM {
         System.out.println("(3) See Balance");
         
         int choice = scan.nextInt();
+        String answer = "";
+        String yes = "yes";
         
         switch (choice){
             case 1:
                 System.out.println("What will be the amount deposited today?");
                 double deposit = scan.nextDouble();
+                
                 System.out.println("Are you sure you want " + deposit + 
-                        "deposited in your account?");
+                        " deposited in your account?");
+                answer = scan.next();
+                
+                while (!answer.equalsIgnoreCase(yes)){
+                    System.out.println("Please enter new amount");
+                    deposit = scan.nextDouble();
+                    
+                    System.out.println("Are you sure you want " + deposit + 
+                        " deposited in your account?");
+                    answer = scan.next();
+                }
+                if (answer.equalsIgnoreCase(yes)){
+                    details.setDepSum(deposit);
+                    System.out.println(details.currDep());
+                }
+                
 
                 break;
             case 2:
@@ -49,6 +67,7 @@ public class ATM {
                 double withdrawal = scan.nextDouble();
                 System.out.println("Are you sure you want " + withdrawal + 
                         "withdrawled in your account?");
+                answer = scan.next();
                 break;
             case 3:
                 System.out.println(details.balance()+"$");
